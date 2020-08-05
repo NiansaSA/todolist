@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
+    <title>To Do List</title>
+</head>
+<body>
+    <div class="container">
+        <div id="app">
+
+            <div class="form-group">
+                <h1>To-do List</h1>
+                <input type="text" name="todo" id="todo" class="form-control" placeholder="To Do ...." v-model="todo" @keyup.enter="addTodo">
+                <button type="button" class="btn btn-primary" style="margin-top:8px" v-on:click="addTodo">Add</button>
+            </div>
+            <table class="table" v-if="todos.length > 0">
+                <thead>
+                    <th scope="col">#</th>
+                    <th scope="col">To-do</th>
+                    <th scope="col">Action</th>
+                </thead>
+                <tbody v-for="(todo, index) in todos" :key="todo.id">
+                    <td scope="col">{{index+1}}</td>
+                    <td>{{todo}}</td>
+                    <td
+                     is="hapus"
+                     @remove="todos.splice(index, 1)">
+                    </td>
+                </tbody>
+            </table>
+            <h3 v-else>Empty</h3>
+        </div>
+    </div>
+    <script src="app.js">
+
+    </script>
+</body>
+</html>
